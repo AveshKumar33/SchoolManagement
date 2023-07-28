@@ -1,0 +1,41 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Teacher {
+  id: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+type User {
+  id: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  role: String!
+}
+
+type Query {
+  teacher: String!
+  getTeachers: [Teacher!]!
+}
+
+type Mutation {
+  createUser(userInputType: UserInputType!): User!
+  createTeacher(firstName: String!, lastName: String!, email: String!): Teacher!
+}
+
+input UserInputType {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  role: UserRole!
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
