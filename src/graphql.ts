@@ -21,11 +21,27 @@ export interface UserInputType {
     role: UserRole;
 }
 
-export interface Teacher {
-    id: string;
+export interface CreateTeacherInputType {
     firstName: string;
     lastName: string;
     email: string;
+    subject: string;
+}
+
+export interface UpdateTeacherInputType {
+    _id: string;
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+    email?: Nullable<string>;
+    subject?: Nullable<string>;
+}
+
+export interface Teacher {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    subject: string;
 }
 
 export interface User {
@@ -37,13 +53,16 @@ export interface User {
 }
 
 export interface IQuery {
-    teacher(): string | Promise<string>;
-    getTeachers(): Teacher[] | Promise<Teacher[]>;
+    getAllUsers(): User[] | Promise<User[]>;
+    getAllTeachers(): Teacher[] | Promise<Teacher[]>;
 }
 
 export interface IMutation {
     createUser(userInputType: UserInputType): User | Promise<User>;
-    createTeacher(firstName: string, lastName: string, email: string): Teacher | Promise<Teacher>;
+    getTeacherById(id: string): Teacher | Promise<Teacher>;
+    createTeacher(createTeacherInputType: CreateTeacherInputType): Teacher | Promise<Teacher>;
+    updateTeacher(updateTeacherInputType: UpdateTeacherInputType): Teacher | Promise<Teacher>;
+    deleteTeacher(id: string): Teacher | Promise<Teacher>;
 }
 
 type Nullable<T> = T | null;

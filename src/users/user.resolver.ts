@@ -28,6 +28,10 @@ export class UserResolver {
     ) {
         return this.userService.registerUser(userInputType)
     }
+    @Query(returns=>[UserType])
+    getAllUsers(){
+        return this.userService.getUsers()
+    }
 
 
 }

@@ -3,10 +3,11 @@
 # ------------------------------------------------------
 
 type Teacher {
-  id: String!
+  _id: String!
   firstName: String!
   lastName: String!
   email: String!
+  subject: String!
 }
 
 type User {
@@ -18,13 +19,16 @@ type User {
 }
 
 type Query {
-  teacher: String!
-  getTeachers: [Teacher!]!
+  getAllUsers: [User!]!
+  getAllTeachers: [Teacher!]!
 }
 
 type Mutation {
   createUser(userInputType: UserInputType!): User!
-  createTeacher(firstName: String!, lastName: String!, email: String!): Teacher!
+  getTeacherById(id: String!): Teacher!
+  createTeacher(createTeacherInputType: CreateTeacherInputType!): Teacher!
+  updateTeacher(updateTeacherInputType: UpdateTeacherInputType!): Teacher!
+  deleteTeacher(id: String!): Teacher!
 }
 
 input UserInputType {
@@ -38,4 +42,19 @@ input UserInputType {
 enum UserRole {
   ADMIN
   USER
+}
+
+input CreateTeacherInputType {
+  firstName: String!
+  lastName: String!
+  email: String!
+  subject: String!
+}
+
+input UpdateTeacherInputType {
+  _id: String!
+  firstName: String
+  lastName: String
+  email: String
+  subject: String
 }

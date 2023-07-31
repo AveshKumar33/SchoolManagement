@@ -10,7 +10,7 @@ import { UserInputType } from "./args/user.input.type";
 export class UserService {
     constructor(@InjectRepository(User) public readonly userRepository: Repository<User>) { }
 
-    async registerUser(userInputType:UserInputType): Promise<UserType> {
+    async registerUser(userInputType:UserInputType): Promise<User> {
         const {firstName, lastName, email, password, role}=userInputType;
         const user = this.userRepository.create({
             id: uuidv4(),
@@ -22,6 +22,9 @@ export class UserService {
         })
         this.userRepository.save(user)
         return user
+    }
+    async getUsers():Promise<User[]>{
+        return await this.userRepository.find()
     }
 
 }

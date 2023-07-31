@@ -5,14 +5,39 @@ export type TeacherDocument = Teacher & Document;
 
 @Schema()
 export class Teacher {
-  @Prop()
+  @Prop(
+    {
+      type: String,
+      required: true
+    }
+  )
   firstName: string;
 
-  @Prop()
+  @Prop(
+    {
+      type: String,
+      required: true
+    }
+  )
   lastName: string;
 
-  @Prop()
+  @Prop(
+    {
+      type: String,
+      required: true,
+      unique:true
+    }
+  )
   email: string;
+
+  @Prop(
+    {
+      type: String,
+      required: true
+    }
+  )
+  subject: string;
+
 }
 
 export const TeacherSchema = SchemaFactory.createForClass(Teacher);
