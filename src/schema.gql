@@ -20,18 +20,20 @@ type User {
 
 type Query {
   getAllUsers: [User!]!
+  getUserById(id: String!): User!
   getAllTeachers: [Teacher!]!
 }
 
 type Mutation {
-  createUser(userInputType: UserInputType!): User!
+  createUser(userInputType: CreateUserInputType!): User!
   getTeacherById(id: String!): Teacher!
   createTeacher(createTeacherInputType: CreateTeacherInputType!): Teacher!
   updateTeacher(updateTeacherInputType: UpdateTeacherInputType!): Teacher!
   deleteTeacher(id: String!): Teacher!
+  signIn(signInUserInputType: SignInUserInputType!): String!
 }
 
-input UserInputType {
+input CreateUserInputType {
   firstName: String!
   lastName: String!
   email: String!
@@ -57,4 +59,9 @@ input UpdateTeacherInputType {
   lastName: String
   email: String
   subject: String
+}
+
+input SignInUserInputType {
+  username: String!
+  pass: String!
 }

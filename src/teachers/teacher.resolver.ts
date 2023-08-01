@@ -3,6 +3,8 @@ import { TeacherService } from "./teacher.service";
 import { TeacherType } from "./type/teacherType";
 import { CreateTeacherInputType } from "./args/create.teacher.input.type";
 import { UpdateTeacherInputType } from "./args/update.teacher.input.type";
+import { AuthGuard } from "src/auth/guards/auth.guard";
+import { UseGuards } from "@nestjs/common";
 
 @Resolver(of=>TeacherType)
 

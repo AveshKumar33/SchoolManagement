@@ -13,7 +13,7 @@ export enum UserRole {
     USER = "USER"
 }
 
-export interface UserInputType {
+export interface CreateUserInputType {
     firstName: string;
     lastName: string;
     email: string;
@@ -36,6 +36,11 @@ export interface UpdateTeacherInputType {
     subject?: Nullable<string>;
 }
 
+export interface SignInUserInputType {
+    username: string;
+    pass: string;
+}
+
 export interface Teacher {
     _id: string;
     firstName: string;
@@ -54,15 +59,17 @@ export interface User {
 
 export interface IQuery {
     getAllUsers(): User[] | Promise<User[]>;
+    getUserById(id: string): User | Promise<User>;
     getAllTeachers(): Teacher[] | Promise<Teacher[]>;
 }
 
 export interface IMutation {
-    createUser(userInputType: UserInputType): User | Promise<User>;
+    createUser(userInputType: CreateUserInputType): User | Promise<User>;
     getTeacherById(id: string): Teacher | Promise<Teacher>;
     createTeacher(createTeacherInputType: CreateTeacherInputType): Teacher | Promise<Teacher>;
     updateTeacher(updateTeacherInputType: UpdateTeacherInputType): Teacher | Promise<Teacher>;
     deleteTeacher(id: string): Teacher | Promise<Teacher>;
+    signIn(signInUserInputType: SignInUserInputType): string | Promise<string>;
 }
 
 type Nullable<T> = T | null;

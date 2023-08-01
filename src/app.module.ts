@@ -11,6 +11,7 @@ import { postgreSqlOrmConfig } from './databases/postgresql.connection';
 // import { mySqlOrmConfig } from './databases/mysql.connection';
 // import { InfoModule } from './informations/info.module';
 import { UserModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { UserModule } from './users/users.module';
       },
     }),
 
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['database.credentials.env'] }), // Load and use @nestjs/config
+    ConfigModule.forRoot({ envFilePath: ['database.credentials.env', 'development.credentials.env'], isGlobal: true, ignoreEnvFile: false, }), // Load and use @nestjs/config
 
     /* postgesql connection */
     TypeOrmModule.forRootAsync({
@@ -50,6 +51,7 @@ import { UserModule } from './users/users.module';
     // InfoModule,
     UserModule,
     TeacherModule,
+    AuthModule,
 
   ],
   controllers: [],

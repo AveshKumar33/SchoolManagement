@@ -4,29 +4,29 @@ import { UserRole } from "../userEnum/user.role";
 
 
 @InputType()
-export class UserInputType {
+export class CreateUserInputType {
 
-    @Field()
+    @Field({nullable:false})
     @IsString()
     @IsNotEmpty()
     @MinLength(3)
     @MaxLength(50)
     firstName: string
 
-    @Field()
+    @Field({ nullable: false })
     @IsString()
     @IsNotEmpty()
     @MinLength(3)
     @MaxLength(50)
     lastName: string
 
-    @Field()
+    @Field({ nullable: false })
     @IsString()
     @IsNotEmpty()
     @IsEmail()
     email: string
 
-    @Field()
+    @Field({ nullable: false })
     @IsString()
     @IsNotEmpty()
     @MinLength(8)
